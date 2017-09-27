@@ -1,24 +1,49 @@
-# README
+# Wagon - Garage API 🚗
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This API will help you store information about cars stored in your garage (repair shop 🛠). Four HTTP endpoints are here for you to use:
 
-Things you may want to cover:
+## Retrieve the list of cars in a garage
 
-* Ruby version
+Here's the HTTP request you can run. Be careful, `:garage` in the URL is **dynamic**!
 
-* System dependencies
+```bash
+verb GET
+url: https://wagon-garage-api.herokuapp.com/:garage/cars
+```
 
-* Configuration
+You may choose any name for **your** garage. Your buddy and you should have different garage names! Example of garage names: 'reparator-2000', 'bricolman', 'abitbol-and-son', etc.
 
-* Database creation
+## Add a car to a garage
 
-* Database initialization
+To add a new car to your garage, you need to send this HTTP request:
 
-* How to run the test suite
+```bash
+verb: POST
+url: https://wagon-garage-api.herokuapp.com/:garage/cars
+header: Content-Type: application/json
+body:
+  {
+    "brand": "PEUGEOT",
+    "model": "106",
+    "owner": "ssaunier",
+    "plate": "123AZ56"
+  }
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Get infos for a car
 
-* Deployment instructions
+If you know the `:id` of a car, you can retrieve its information with:
 
-* ...
+```bash
+verb GET
+url: https://wagon-garage-api.herokuapp.com/cars/:id
+```
+
+## Destroy a car
+
+If you know the `:id` of a car, you can remove it with:
+
+```bash
+verb: DELETE
+url: https://wagon-garage-api.herokuapp.com/cars/:id
+```
