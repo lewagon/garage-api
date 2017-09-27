@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
       }
     end
     render json: {
+      documentation: "https://github.com/lewagon/garage-api#readme",
       garages: garages,
     }
   end
