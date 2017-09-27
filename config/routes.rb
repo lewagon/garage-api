@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   end
   resources :cars, only: [ :show, :destroy ]
 
+  root to: 'application#home'
+
   get '*a', :to => 'application#routing_error'
 end
