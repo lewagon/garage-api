@@ -20,7 +20,7 @@ To add a new car to your garage, you need to send this HTTP request:
 ```bash
 verb: POST
 url: https://wagon-garage-api.herokuapp.com/:garage/cars
-header: Content-Type: application/json
+headers: Content-Type: application/json
 body:
   {
     "brand": "PEUGEOT",
