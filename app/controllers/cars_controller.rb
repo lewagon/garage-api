@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   def index
-    @cars = Car.where(garage:  params[:garage])
+    @cars = Car.where(garage: params[:garage])
     respond_to do |format|
       format.html { render json: @cars }
       format.xml { render xml: @cars.as_json }
