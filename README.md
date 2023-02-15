@@ -8,7 +8,8 @@ Here's the HTTP request you can run. Be careful, `:garage` in the URL is **dynam
 
 ```bash
 verb GET
-url: https://wagon-garage-api.herokuapp.com/:garage/cars
+url: https://wagon-garage-api.herokuapp.com/:garage/cars     # Default: JSON format
+url: https://wagon-garage-api.herokuapp.com/:garage/cars.xml # Variant: XML format
 ```
 
 You may choose any name for **your** garage. Your buddy and you should have different garage names! Example of garage names: 'reparator-2000', 'bricolman', 'abitbol-and-son', etc.

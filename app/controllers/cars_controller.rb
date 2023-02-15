@@ -2,15 +2,23 @@ class CarsController < ApplicationController
   def index
     @cars = Car.where(garage: params[:garage])
     respond_to do |format|
-      format.html { render json: @cars }
-      format.xml { render xml: @cars.as_json }
+      format.json { render json: @cars }
+      format.xml { render xml: @cars.to_xml }
     end
   end
 
   def show
-    render json: Car.find(params[:id])
+    car = Car.find(params[:id])
+    respond_to do |format|
+      format.json { render json: car }
+      format.xml { render xml: car.to_xml }
+    end
   rescue ActiveRecord::RecordNotFound
-    render json: { error: "Could not find car with id #{params[:id]}" }, status: 404
+    error = { error: "Could not find car with id #{params[:id]}" }
+    respond_to do |format|
+      format.json { render json: error, status: 404 }
+      format.xml { render xml: error, status: 404, root: "error" }
+    end
   end
 
   def create
