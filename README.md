@@ -8,8 +8,8 @@ Here's the HTTP request you can run. Be careful, `:garage` in the URL is **dynam
 
 ```bash
 verb GET
-url: https://wagon-garage-api.herokuapp.com/:garage/cars     # Default: JSON format
-url: https://wagon-garage-api.herokuapp.com/:garage/cars.xml # Variant: XML format
+url: https://garage.api.lewagon.com/:garage/cars     # Default: JSON format
+url: https://garage.api.lewagon.com/:garage/cars.xml # Variant: XML format
 ```
 
 You may choose any name for **your** garage. Your buddy and you should have different garage names! Example of garage names: 'reparator-2000', 'bricolman', 'abitbol-and-son', etc.
@@ -20,7 +20,7 @@ To add a new car to your garage, you need to send this HTTP request:
 
 ```bash
 verb: POST
-url: https://wagon-garage-api.herokuapp.com/:garage/cars
+url: https://garage.api.lewagon.com/:garage/cars
 headers: Content-Type: application/json
 body:
   {
@@ -37,7 +37,7 @@ If you know the `:id` of a car, you can retrieve its information with:
 
 ```bash
 verb GET
-url: https://wagon-garage-api.herokuapp.com/cars/:id
+url: https://garage.api.lewagon.com/cars/:id
 ```
 
 ## Destroy a car
@@ -46,5 +46,5 @@ If you know the `:id` of a car, you can remove it with:
 
 ```bash
 verb: DELETE
-url: https://wagon-garage-api.herokuapp.com/cars/:id
+url: https://garage.api.lewagon.com/cars/:id
 ```

@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Scaleway (Dokku)
+        uses: dokku/github-action@master
+        with:
+          command: deploy
+          git_remote_url: "ssh://dokku@students.lewagon.engineering/garage-api"
+          git_push_flags: "--force -vvv"
+
+          # NOTE(ssaunier): having `id_ed25519`  `id_ed25519.pub` localy:
+          # cat ~/code/lewagon/glovebox/id_ed25519.pub | ssh root@students.lewagon.engineering dokku ssh-keys:add "ssaunier_github@dokku"
+          # ssh students ssh-keys:list
+          # cat ~/code/lewagon/glovebox/id_ed25519 | pbcopy # To be added to https://github.com/lewagon/garage-api/settings/secrets/actions
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+
+          # cat ~/.ssh/known_hosts | grep "students.lewagon.engineering ssh-rsa"
+          ssh_host_key: |
+            students.lewagon.engineering ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCp7UWRGPtC4QermDmb4BZq2zdin7YQMqvwv//nLiu955amaBWvxP4MFXTr4Ig20PFSRVe8nwcnLgiHLhi1Jakr08jHGrcF3TykIGdFTNpqP5trmBNA711BOQVtrC0h4EQvuavjO8pVe0IhU0cCVHsRtIWKiHT+RwTdwuMrFxeA8ecu9DnWvG4KHkPL8fXVvUg59AN3CUKd6cGd5Vwfhxh1CTgxnZGmEpFlnRyqCX2yHojtsJCItGjDgvkme468GiaCMCQQuURrl5Q+EX2uo6csDKjYPu7Wnznp0pGuCfDkFRMe1xaSgqkspulRimwp2I7Vr0xHylhUgmQ+c2RlLovQcOJLOsqobkHChqBfUxS4S6/h3yttoORFIp+fsvpsmfuzIRojz/MxzVTE1evfR4NtpflNuAQeTk28+oB4SpqyIXgwX9eFMpcyCbd3UlNd0mO3yKqiUBs3M0pZPKcwTaZi9xOCDoGXGO1cNu+JWipTXydMespblDIFUJVJ+jEbt+8=
+

@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: garage-api_production
-  username: garage-api
-  password: <%= ENV['GARAGE-API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

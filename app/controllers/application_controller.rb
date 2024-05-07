@@ -1,5 +1,5 @@
-class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
 
   def home
     garages = Car.all.pluck(:garage).uniq.map do |garage|
